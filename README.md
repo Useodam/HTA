@@ -5,7 +5,7 @@
 - 학원에서 공부하면서 공부했던 기록들을 남기려고 만든 페이지입니다.
 - 작성했던 코드나 개념 설명을 나중에도 보기 위해 만들었습니다.
 - 깃허브와 블로그 두곳에서 기록을 남길 예정입니다.
-- <a href='https:useodam.tistory.com' target='_blank'>
+- <a href='https://useodam.tistory.com/' target='_blank'>   
   블로그
   </a>
 <br>
