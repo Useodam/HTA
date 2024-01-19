@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>링크 태그</h1>
+    <!--
+        a 태그
+            + a 태그 hyperlink를 정의하는 태그다
+            + hyper는 텍스트가 다중으로 연결되어 있는 상태를 의미한다
+            + hyperlink는 텍스트에서 연결된 다른 텍스트로 건너뛰어 읽을 수 있는 기능이다
+        
+        주요 속성
+            href
+                + 이동하고자 하는 파일의 경로를 지정하는 속성이다.
+                + 예시
+                    <a href="http://www.daum.net">다음</a>
+                    <a href="01.html">첫번째 예제</a>
+            target
+                + 링크를 클릭했을 때 윈도우를 어떻게 오픈할지를 지정한다
+                    <a href="" target="_self">링크1</a>
+                        현재 윈도우에서 오픈한다. 기본값
+                    <a href="" targer="_blank">링크2</a>
+                        새로운 윈도우나 탭에서 오픈한다
+        
+        링크 경로 표기법
+            + 절대경로(Absolute path)
+                현재 작업 디렉토리와 관계없이 특정파일의 절대적인 위치를 지정한다
+                예시)
+                    <a href="http://www.daum.net">다음</a>
+                    <a href="http://www.mysamplesite.com/home.html">홈</a>
+                    <a href="/home.html">홈</a>
+                    <a href="/user/registerform.html">가입폼</a>
+
+
+            + 상대경로(Relative path)
+                현재 작업 디렉토리를 기준으로 특정 파일의 상대적인 위치를 지정한다
+                예시)
+                    <a href="home.html">홈</a>
+                    <a href="user/registerform.html">가입폼</a>
+                    <a href="./index.html">시작페이지</a>
+                    <a href="../user/loginform.html">로그인폼</a>
+
+
+    -->
+
+    <a href="01.html" target="_self"> 첫번째 예제</a>
+    <a href="02-style.html" target="_blank">두번째 예제</a>
+    <a href="03-link.html"> 세번째 예제</a>
+
+    <br/>
+
+    <a href="http://www.daum.net">다음</a>
+    <a href="http://www.naver.com">네이버</a>
+    <a href="http://www.google.com">구글</a>
+    
+</body>
+</html>
