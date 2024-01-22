@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,td{
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>id 속성값 실습</h1>
+    <!--
+        id 속성의 지정
+            + javascript로 값을 조회하거나, 값을 변경하거나,
+              엘리먼트를 조작(추가/삭제/숨김)해야 하는 곳에는
+              전부 고유한 id 속성을 지정하자
+            + id속성의 속성값은패턴을 가지도록 지정하는 것이
+              javascript로 제어하기 쉽다
+    -->
+
+    <h3>장바구니</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>가격</th>
+                <th>수량</th>
+                <th>구매가격</th>
+                <th>비고</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="cart-item-100">
+                <td>자바의 정석</td>
+                <td><span id="price-100">27,000</span> 원</td>
+                <td><input type="number" value="1" style="width: 25px;" name="" id="amount-100"> 개</td>
+                <td><span id="order-price-100">27,000</span> 원</td>
+                <td><button data-no="100">삭제</button></td>
+            </tr>
+
+            <tr id="cart-item-101">
+                <td>이것이 자바다</td>
+                <td><span id="price-101">35,000</span> 원</td>
+                <td><input type="number" value="1" style="width: 25px;" name="" id="amount-101"> 개</td>
+                <td><span id="order-price-101">35,000</span> 원</td>
+                <td><button data-no="101">삭제</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div>
+        <p>총 구매가격 : <strong id="total-order-price">62,000</strong>원</p>
+    </div>
+</body>
+</html>
