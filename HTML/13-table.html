@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 100%;                /* 테이블의 넓이 */
+            border-collapse: collapse;  /* 테이블의 테두리를 무너트린다*/
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;              /*테두리 내부의 두께*/
+            text-align: left;           /*글자의 정렬 : 왼쪽*/
+        }
+
+        thead tr{
+            background-color: black;
+        }
+
+        th{
+            color: white;
+        }
+
+        tbody tr:nth-child(even){       /*테두리 안에 있는 tr들을(짝수번째) 애들을 지정*/
+            background-color: #ddd;   /*백그라운드 컬러를 바꾼다*/
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>스타일이 적용된 테이블</h1>
+
+    <h3>직원 정보</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>연락처</th>
+                <th>입사일</th>
+                <th>부서명</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>100</td>
+                <td>김유신</td>
+                <td>010-1234-5678</td>
+                <td>2020년 12월 10일</td>
+                <td>영업1팀</td>
+            </tr>
+
+            <tr>
+                <td>100</td>
+                <td>김유신</td>
+                <td>010-1234-5678</td>
+                <td>2020년 12월 10일</td>
+                <td>영업1팀</td>
+            </tr>
+
+            <tr>
+                <td>100</td>
+                <td>김유신</td>
+                <td>010-1234-5678</td>
+                <td>2020년 12월 10일</td>
+                <td>영업1팀</td>
+            </tr>
+
+            <tr>
+                <td>100</td>
+                <td>김유신</td>
+                <td>010-1234-5678</td>
+                <td>2020년 12월 10일</td>
+                <td>영업1팀</td>
+            </tr>
+
+            <tr>
+                <td>100</td>
+                <td>김유신</td>
+                <td>010-1234-5678</td>
+                <td>2020년 12월 10일</td>
+                <td>영업1팀</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
