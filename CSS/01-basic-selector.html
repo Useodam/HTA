@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 태그 선택자 */
+        h1 {color: red;}
+        p{ color: blue;}
+
+        /* 클래스 선택자 */
+        /* color은 자식 요소에도 상속된다 */
+        .description { color: orange;
+                        font-style: italic;}
+
+        /* 아이디 선택자 */
+        #intro {color:green;}
+
+    </style>
+</head>
+<body>
+    <h1>기본선택자 연습</h1>
+    <div>
+        <p class="description" id="intro">첫번째 단락</p>
+        <p class="description">두번째 단락</p>
+        <p class="description">세번째 단락</p>
+        
+    </div>
+
+    <div>
+        <p>첫번째 단락</p>
+        <p>두번째 단락</p>
+        <p>세번째 단락</p>
+        
+    </div>
+</body>
+</html>
