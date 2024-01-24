@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* a태그 중에서 href 속성을 가지고 있는 모든 요소를 선택 */
+        a[href] {border: 1px solid #ddd; padding: 3px;}
+        
+        /* a태그 중에서 href 속성값이 http로 시작하는 모든 요소 선택 */
+        a[href^="http"] {background-color:  red;}
+
+        /* a태그 중에서 href 속성값이 pdf로 끝나는 모든 요소 선택 */
+        a[href$="pdf"] {background-color: lightgreen;}
+
+        /* a태그 중에서 title 속성값에 "쇼핑"이라는 글자를 포함하고 있는 모든 요소 선택 */
+        a[title*="쇼핑"] {background-color: lawngreen;}
+
+         /* a태그 중에서 title 속성값에 "shopping"을 공백으로 구분된 단어로 포함하고 있는 모든 요소 */
+         a[title~="shopping"] {background-color: lightgreen;}
+
+         /* input태그 중에서 name 속성값이 username인 요소를 선택 */
+         input[name="username"] {border: 2px solid salmon;}
+    </style>
+</head>
+<body>
+    <h1>속성 선택자 연습</h1>
+
+    <p>
+        <a href="">링크1</a>
+        <a href="">링크1</a>
+        <a>링크1</a>
+    </p>
+
+    <p>
+        <a href="http://www.daum.net">링크1</a>
+        <a href="http://www.google.com">링크1</a>
+        <a href="/sample.jsp">링크1</a>
+    </p>
+
+    <p>
+        <a href="sample.pdf">링크1</a>
+        <a href="sample.docx">링크1</a>
+        <a href="doc.pdf">링크1</a>
+    </p>
+
+    <p>
+        <a href="xxx.html" title="쇼핑몰 사이트">링크1</a>
+        <a href="xxx.html" title="쇼핑 사이트">링크1</a>
+        <a href="xxx.html" title="인터넷쇼핑 사이트">링크1</a>
+    </p>
+
+    <p>
+        <a href="xxx.html" title="shopping-site">링크1</a>
+        <a href="xxx.html" title="shopping site">링크1</a>
+        <a href="xxx.html" title="site">링크1</a>
+    </p>
+
+    <p>
+        <input type="text" name="username" placeholder="이름을 입력하세요">
+        <input type="password" name="userpwd" placeholder="비밀번호를 입력하세요">
+    </p>
+
+</body>
+</html>
