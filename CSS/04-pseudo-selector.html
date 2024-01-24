@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin: 10px 0;
+        }
+        /* 가상 클래스 선택자 */
+        /* 클래스속성값이 container의 하위요소 중에서 모든 p를 선택하고,
+            선택된 p중에서 첫번째 자식인 요소를 모두 선택한다 */
+        .container p:first-child { background-color: yellow;}
+
+        /* 클래스속성값이 container의 하위요소 중에서 모든 p를 선택하고,
+            선택된 p중에서 마지막번째 자식인 요소를 모두 선택한다 */
+        .container p:last-child {background-color: magenta;}
+        
+        /* 클래스속성값이 container의 하위요소 중에서 모든 p를 선택하고,
+            선택된 p중에서 2번째 자식인 요소를 모두 선택한다 */
+        .container p:nth-child(2) {background-color: rgb(55, 155, 15);}
+
+
+        /* tbody의 하위요소 중에서 모든 tr를 선택하고,
+            선택된 tr중에서 3n+1번째 자식인 요소를 모두 선택한다
+            n은 0부터 시작하는 정수다
+            따라서 1,4,7,10번째 자식인 tr이 모두 선택된다
+        */
+        tbody tr:nth-child(3n+1) {background-color: #ddd;}
+
+    </style>
+</head>
+<body>
+    <h1>가상 선택자</h1>
+
+    <div class="container">
+        <p>1번째 단락</p>
+        <p>2번째 단락</p>
+        <p>3번째 단락</p>
+    </div>
+    <div class="container">
+        <p>1번째 단락</p>
+        <p>2번째 단락</p>
+        <p>3번째 단락</p>
+        <p>4번째 단락</p>
+        <p>5번째 단락</p>
+    </div>
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>제목</th>
+                <th>제목</th>
+                <th>제목</th>
+                <th>제목</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
