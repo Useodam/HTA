@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f3f4;
+      color: #58666e;
+    }
+
+    #wrap{
+        /* contents 영역이 header 영역과 겹쳐지지 않도록 header의 height만큼 */
+        margin-top: 60px;
+    }
+
+    header {
+    /* 헤더부를 상단에 고정시킨다 */
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      z-index: 2000;
+      background-color: #fff;
+      /* box-show 효과를 추가한다. */
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    /*Navigation bar를 우측정렬한다.*/
+    nav {
+      float: right;
+    }
+
+    /*로그 이미지를 수직으로 중앙 정렬한다.*/
+    .logo {
+      /*a태그를 inline-block으로 변경해서 heigh와 margin을 지정할 수 있게 한다.*/
+      display: inline-block;
+      height: 36px;
+      margin: 12px 0 12px 25px;
+    }
+
+    .logo > img { height: 36px;}
+
+    .nav-items > li {
+      /*수직정렬되어 있는 Navigation bar를 수평 정렬한다.*/
+      display: inline-block;
+    }
+
+    /*글자의 자간을 Navigation bar의 높이와 동일하게 맟춰서 메뉴가 수직 중앙 정렬되게 한다.*/
+    .nav-items > li > a {
+      line-height: 60px;
+      padding: 0 30px;
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    /*링크에 마우스가 올라오면 텍스트 색이 변하게 한다.*/
+    .nav-items > li > a:hover {
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    #content-wrap::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    aside{
+        /* aside영역(side bar)을 고정시킨다 */
+        position: fixed;
+        top: 60px;
+        bottom: 0px;
+
+        width: 200px;
+        padding-top: 25px;
+        background-color: #333;
+    }
+
+    aside > ul{
+        width: 200px;
+    }
+
+    aside > ul > li > a{
+        display: block;
+        counter-reset: #fff;
+        padding: 10px 0 10px 20px;
+    }
+
+    aside > ul > li > a.active{
+        background-color: #4caf50;
+    }
+
+    aside > ul > li > a:hover:not(.active){
+        background-color: #555;
+    }
+
+    aside > h1 {
+        color: #fff;
+        padding: 20px 0 20px 20px;
+    }
+
+    section{
+        float: right;
+        width: 80%;
+    }
+
+    article{
+        margin: 10px;
+        padding: 25px;
+        background-color: white;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <header>
+      <a class="logo" href="/home">
+        <img src="https://poiemaweb.com/img/logo.png" height="36px">
+      </a>
+      <nav>
+        <ul class="nav-items">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="content-wrap">
+        <!-- 컨텐츠에 대한 메뉴아이템이나 부가정보 영역은 aside다 -->
+        <aside>
+            <h1>Aside</h1>
+            <ul>
+                <li><a href="#" class="active">런던</a></li>
+                <li><a href="#" >파리</a></li>
+                <li><a href="#">도쿄</a></li>
+                <li><a href="#" >뉴욕</a></li>
+            </ul>
+        </aside>
+        <!-- section은 컨텐츠 영역이다. section영역은 더 구체적인 article로 구분된다 -->
+        <section>
+            <article id="london">
+                <h1>런던</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            </article>
+
+            <article id="paris">
+                <h1>파리</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            </article>
+
+            <article id="tokyo">
+                <h1>도쿄</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            </article>
+
+            <article id="newyork">
+                <h1>뉴욕</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            </article>
+        </section>
+    </div>
+  </div>
+</body>
+</html>
