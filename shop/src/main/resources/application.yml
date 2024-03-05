@@ -11,7 +11,7 @@ server:
 logging:
   level:
     root: info
-    '[org.springframework]': trace
+    '[org.springframework]': info
     '[com.example.web]': debug
     '[com.example.mapper]': trace
 

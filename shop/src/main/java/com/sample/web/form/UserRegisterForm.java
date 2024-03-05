@@ -2,6 +2,8 @@ package com.sample.web.form;
 
 import java.util.Date;
 
+import com.sample.vo.User;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -37,4 +39,16 @@ public class UserRegisterForm {
 	@NotNull(message = "생일은 필수 입력값입니다")
 	@Past(message = "생일은 오늘보다 이전 날짜만 가능합니다")
 	private Date birth;
+	
+	public User toUser() {
+		User user = new User();
+		user.setId(id);
+		user.setPassword(password);
+		user.setName(name);
+		user.setEmail(email);
+		user.setTel(tel);
+		user.setBirth(birth);
+		
+		return user;
+	}
 }

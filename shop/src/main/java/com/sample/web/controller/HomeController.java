@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sample.exception.AlreadyUsedEmailException;
+import com.sample.exception.AlreadyUsedIdException;
+import com.sample.service.UserService;
 import com.sample.web.form.UserRegisterForm;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-@Log4j2
+
 /*
  *  로그 출력을 지원하는 어노텡션이다
  * 클래스에 아래의 코드를 추가한다.
@@ -26,8 +30,11 @@ import lombok.extern.log4j.Log4j2;
  * 
  * System.out.println() 대신 반드시 log를 사용하자.
  */
-
+@Log4j2
+@RequiredArgsConstructor
 public class HomeController {
+	
+	private final UserService userService;
 
 	@RequestMapping("/")
 	public String home() {
@@ -46,6 +53,21 @@ public class HomeController {
 		if(errors.hasErrors()) {
 			return "form";
 		}
+		
+		try {
+			// 폼 입력값 유효성 체크를 통과한 경우
+			userService.registerUser(form);
+		} catch (AlreadyUsedIdException ex) {
+			// 이미 사용중인 아이디인 경우, 유효성 체크를 통과하지 못한 것으로 간주한다
+			// rejectValue() 메소드는 BindingResult객체에 FieldError를 추가한다
+			// 입력폼 화면으로 내부이동 시킨다
+			errors.rejectValue("id", null, ex.getMessage());
+			return "form";
+		} catch(AlreadyUsedEmailException ex) {
+			errors.rejectValue("email", null, ex.getMessage());
+			return "form";
+		}
+		
 		return "redirect:/";
 	}
 	

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.mapper.UserMapper">
+	
+	<!-- 
+		<resultMap>
+			- 컬럼이름과 값을 저장하는 객체의 프로퍼티명(멤버변수명)을 매핑시킨다
+			- 주요 속성
+				type : 조회결과를 저장할 클래스의 전체 이름
+				id: 식별자를 지정한다
+			- 주요 태그
+				<id>
+					- 특정 컬럼값을 멤버변수에 매핑시킨다
+					- 기본키 컬럼
+				<result>
+					- 특정 컬럼값을 멤버변수에 매핑시킨다
+					- 기본키 컬럼을 제외한 나머지 컬럼
+	 -->
+	<resultMap type="com.sample.vo.User" id="UserResultMap">
+		<id column="user_no" property="no" />
+		<id column="user_id" property="id" />
+		<id column="user_password" property="password" />
+		<id column="user_name" property="name" />
+		<id column="user_tel" property="tel" />
+		<id column="user_email" property="email" />
+		<id column="user_birth" property="birth" />
+		<id column="user_deleted" property="deleted" />
+		<id column="user_created_date" property="createdDate" />
+		<id column="user_updated_date" property="updatedDate" />
+		
+	</resultMap>
+
+	<insert id="insertUser" parameterType="com.sample.vo.User">
+		insert into shop_users
+		(user_no, user_id, user_password, user_name, user_email, user_tel, user_birth)
+		values
+		(users_seq.nextval, #{id}, #{password}, #{name}, #{email}, #{tel}, #{birth})
+	</insert>
+	
+	<update id="updatedUser" parameterType="com.sample.vo.User">
+		update shop_users
+		set
+			<if test="password != null">
+				user_password = #{password},
+			</if>
+			<if test="email != null">
+				user_email = #{email},
+			</if>
+			<if test="tel != null">
+				user_tel = #{tel},
+			</if>
+			<if test="deleted != null">
+				user_password = #{deleted},
+			</if>
+			user_updated_date = sysdate
+		where
+			user_no = #{no}
+	</update>
+	
+	<select id="getUserById" parameterType="String" resultMap="UserResultMap">
+		select
+			*
+		from
+			shop_users
+		where
+			user_id = #{value}
+	</select>
+	
+	<select id="getUserByEmail" parameterType="String" resultMap="UserResultMap">
+		select
+			*
+		from
+			shop_users
+		where
+			user_email = #{value}
+	</select>
+	
+	<select id="getUserByNo" resultMap="UserResultMap" parameterType="int">
+		select
+			*
+		from
+			shop_users
+		where
+			user_no = #{value}
+	</select>
+
+
+</mapper>
