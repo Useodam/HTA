@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.mapper.EmpMapper">
+
+	<select id="getAllEmployees" resultType="com.sample.vo.Emp">
+		select
+			e.emp_no as no,
+			e.emp_name as name,
+			e.emp_tel as tel,
+			e.emp_email as email,
+			e.emp_salary as salary,
+			e.emp_hire_date as hireDate,
+			e.emp_created_date as createdDate,
+			e.emp_updated_date as updatedDate,
+			d.dept_name as "dept.name"
+		from
+			shop_employees e, shop_depts d
+		where
+			e.dept_no = d.dept_no 
+		order by
+			e.emp_name asc
+	</select>
+	
+	<select id="getProductByNo" resultType="com.sample.vo.Emp" parameterType="int">
+		select
+			e.emp_no as no,
+			e.emp_name as name,
+			e.emp_tel as tel,
+			e.emp_email as email,
+			e.emp_salary as salary,
+			e.emp_hire_date as hireDate,
+			e.emp_created_date as createdDate,
+			e.emp_updated_date as updatedDate,
+			d.dept_name as "dept.name"
+		from
+			shop_employees e, shop_depts d
+		where
+			e.dept_no = d.dept_no 
+			and e.emp_no = #{value}
+		order by
+			e.emp_name asc
+	</select>
+	
+	<insert id="createEmployees" parameterType="com.sample.vo.Emp">
+		insert into shop_employees 
+		(emp_no, emp_name, emp_tel, emp_email, emp_hire_date, emp_salary, dept_no)
+		values(emp_seq.nextval, #{name}, #{tel}, #{email}, #{hireDate}, #{salary}, #{dept.no})
+	</insert>
+	
+	<update id="updateEmployee" parameterType="com.sample.vo.Emp">
+		update shop_employees set
+			emp_tel = #{tel},
+			emp_email = #{email},
+			emp_salary = #{salary},
+			emp_hire_date = #{hireDate},
+			dept_no = #{dept.no},
+			emp_updated_date = sysdate
+		
+		where emp_no = #{no}
+		
+	</update>
+ 	
+</mapper>
