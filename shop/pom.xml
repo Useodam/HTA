@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
+		<version>2.7.18</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sample</groupId>
@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>3.0.3</version>
+			<version>2.3.2</version>
 		</dependency>
 
 		<dependency>
@@ -65,8 +65,8 @@
 		
 		<!-- JSTL 태그 라이브러리 의존성을 추가한다 -->
 		<dependency>
-          <groupId>org.glassfish.web</groupId>
-          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+         <groupId>javax.servlet</groupId>
+         <artifactId>jstl</artifactId>
       </dependency>
 
 	
@@ -78,18 +78,17 @@
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter-test</artifactId>
-			<version>3.0.3</version>
+			<version>2.3.2</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- 
+			웹 애플리케이션에 대한 인증/인가 작업을 지원하는 스프링 시큐리티 라이브러리 의존성을 추가한다
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>

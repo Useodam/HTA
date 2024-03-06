@@ -12,7 +12,7 @@ import com.sample.exception.AlreadyUsedIdException;
 import com.sample.service.UserService;
 import com.sample.web.form.UserRegisterForm;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
