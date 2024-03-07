@@ -1,5 +1,6 @@
 package com.sample.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sample.exception.AlreadyUsedEmailException;
@@ -25,7 +26,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
+	
+	// 회원가입시 비밀번호 암호화를 위해서 passwordEncoder 구현객체를 주입받는다
+	private final PasswordEncoder passwordEncoder;
 	private final UserMapper userMapper;
 	
 	public void registerUser(UserRegisterForm form) {
@@ -40,7 +43,15 @@ public class UserService {
 		}
 		
 		User user = form.toUser();
+		
+		// 비밀번호 암호화
+		String secretPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(secretPassword);
 		userMapper.insertUser(user);
+	}
+	
+	public User getUser(String id) {
+		return userMapper.getUserById(id);
 	}
 	
 }

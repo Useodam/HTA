@@ -8,3 +8,6 @@
 <%-- Spring 태그 라이브러리 --%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%-- Spring Security 태그 라이브러리 --%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
