@@ -82,4 +82,9 @@ public class HomeController {
 		return "loginform";
 	}
 	
+	@GetMapping("/accessdenied")
+	public String accessDenied() {
+		return "error/denied";
+	}
+	
 }

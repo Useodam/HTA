@@ -90,8 +90,22 @@ public class SecurityConfig {
 					.logoutSuccessUrl("/")				// 로그아웃이 성공하면 "/"를 재요청 URL로 지정한다.
 					.invalidateHttpSession(true));		// 로그아웃이 완료되면 HttpSession객체를 무효화시킨다.
 		
-		return http.build();
-	}
+		http
+			// Spring Security의 SecurityFilterChain의 필터에서 발생하는 예외발생했을 때 예외처리하기
+			// 인증(Authentication)에 대해서 AuthenticationException이 발생한다
+			// 인가(Authorization)에 대해서 AccessDeniedException이 발생한다
+			// 인증, 인가 과정에서 발생하는 예외를 처리하는 사용자정의 핸들러 구현에서 등록할 수 있으면, 따로 설정하지 않으면 기본으로 등록되어 있는 핸들러가 동작한다
+			// 인증 예외는 AuthenticationEntryPoint 인터페이스를 구현한 핸들러를 등록한다
+			// 인가 예외는 AccessDeniedHandler 인터페이스를 구현한 핸들러를 등록한다
+			.exceptionHandling((exceptionHandling) -> exceptionHandling
+	            .accessDeniedHandler((request, response, acessDeniedException) -> {
+	               response.sendRedirect(("/accessdenied")); 
+	            }));
+	      
+	      return http.build();
+	   }
+
+	
 	
 	
 	/*
