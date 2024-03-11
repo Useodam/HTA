@@ -14,7 +14,7 @@
 	<cache
 		readOnly="true"
 		flushInterval="60000"
-		size="512 " />
+		size="512" />
 		
 	<select id="getProductCategories" resultType="com.sample.vo.ProductCategory">
 		select

@@ -44,10 +44,10 @@
 			C.company_name as "company.name",
 			P.product_status as status
 		from
-			shop_products P, shop_company C
+			shop_products P, shop_companies C
 		where
 			P.product_category_no = #{value}
-			and P.product_category_no = C.category_no
+			and P.company_no = C.company_no
 		order by
 			P.product_no desc
 	</select>
@@ -58,7 +58,7 @@
 		from
 			shop_products
 		where
-			product_no #{value}
+			product_no = #{value}
 	</select>
 
 </mapper>

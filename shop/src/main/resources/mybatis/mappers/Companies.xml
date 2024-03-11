@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sample.mapper.CompanyMapper">
-
+	<cache
+		readOnly="true"
+		flushInterval="60000"
+		size="512" />
 	<resultMap type="com.sample.vo.Company" id="CompanyResultMap" >
 		<id column="company_no" property="no"/>
 		<result column="company_no" property="no"/>
