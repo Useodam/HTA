@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.mapper.CompanyMapper">
+
+	<resultMap type="com.sample.vo.Company" id="CompanyResultMap" >
+		<id column="company_no" property="no"/>
+		<result column="company_no" property="no"/>
+		<result column="company_name" property="name"/>
+		<result column="company_tel" property="tel"/>
+		<result column="company_zipcode" property="zipcode"/>
+		<result column="company_address1" property="address1"/>
+		<result column="company_address2" property="address2"/>
+	</resultMap>
+	
+	<select id="getCompanies" resultMap="CompanyResultMap">
+		select
+			*
+		from
+			shop_companies
+		order by
+			company_no asc
+	</select>	
+	
+	<select id="getCompanyByNo" parameterType="int" resultMap="CompanyResultMap">
+		select
+			*
+		from
+			shop_companies
+		where
+			company_no = #{value}
+	</select>
+	
+</mapper>

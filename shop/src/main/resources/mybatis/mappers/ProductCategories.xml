@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.mapper.ProductCategoryMapper">
+	
+	<!-- 
+		<cache /> 태그 추가
+			+ 상품 카테고리 정보는 여러 페이지에서 반복적으로 조회되는 정보다
+			+ 상품 카테고리 정보는 자주 변경되는 정보가 아니다
+			+ 상품 카테고리 정보에 대한 캐시를 활성화 시켜서,
+			  지정된 flushInterval 타임이내에 상품 카테고리 정보를 요청하면
+			  데이터베이스 엑세스 작업 없이 메모리에 캐싱된 상품 카테고리 정보를 제공한다
+			  
+	 -->
+	<cache
+		readOnly="true"
+		flushInterval="60000"
+		size="512 " />
+		
+	<select id="getProductCategories" resultType="com.sample.vo.ProductCategory">
+		select
+			category_no as no,
+			category_name as name
+		from
+			shop_product_categories
+		order by
+			category_no asc
+	</select>
+	
+	<select id="getProductCategoryByNo" resultType="com.sample.vo.ProductCategory" parameterType="int">
+		select
+			category_no as no,
+			category_name as name
+		from
+			shop_product_categories
+		where
+			category_no = #{value}
+	</select>
+
+</mapper>

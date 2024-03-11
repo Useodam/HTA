@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="common/tags.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,6 +17,24 @@
 	<div class="row mb-3">
 		<div class="col-12">
 			<h1>홈</h1>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col-3">
+			<div class="card">
+				<div class="card-header">상품 카테고리</div>
+				<div class="list-group">
+					<c:forEach var="category" items="${productCategories }">
+						<a href="/product/list?catNo=${category.no }" 
+						   class="list-group-item list-group-item-action">
+						   ${category.name }
+						</a>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		<div class="col-9">
+		
 		</div>
 	</div>
 </div>
