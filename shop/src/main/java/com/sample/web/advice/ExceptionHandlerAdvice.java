@@ -31,9 +31,9 @@ public class ExceptionHandlerAdvice {
 		return "error/db"; 
 	}
 
-	@ExceptionHandler(Exception.class)
-	public String exceptionHandle(Exception ex) {
-		log.error(ex.getMessage(), ex);
-		return "error/server";
-	}
+//	@ExceptionHandler(Exception.class)
+//	public String exceptionHandle(Exception ex) {
+//		log.error(ex.getMessage(), ex);
+//		return "error/server";
+//	}
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.mapper.OrderItemMapper">
+	
+	<insert id="insertOrderItem" parameterType="com.sample.vo.OrderItem">
+		insert into shop_order_items
+		(order_no, item_amount, item_price, product_no)
+		values
+		(#{orderNo}, #{amount}, #{price}, #{product.no})
+	</insert>
+	
+	<select id="getOrderItemByOrderNo" parameterType="int" resultType="com.sample.vo.OrderItem">
+		select
+			A.order_no as orderNo,
+			A.item_amount as amount,
+			A.item_price as price,
+			A.product_no as "product.no",
+			B.product_name as "product.name",
+			B.product_price as "product.price" 
+		from
+			shop_order_items A, shop_products B
+		where
+			A.order_no = #{value}
+			and A.product_no = B.product_no
+	</select>
+	
+</mapper>

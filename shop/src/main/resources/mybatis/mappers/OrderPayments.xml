@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.mapper.OrderPaymentMapper">
+	
+	<insert id="insertPayment" parameterType="com.sample.vo.OrderPayment">
+		insert into shop_order_payments
+		(payment_no, payment_type, payment_acc_no, payment_months, payment_amount, order_no)
+		values
+		(payments_seq.nextval, #{type}, #{accNo}, #{months}, #{amount}, #{order.no} )
+	</insert>
+	
+	<select id="getOrderPaymentByOrderNo" parameterType="int" resultType="com.sample.vo.OrderPayment">
+		select
+			payment_no as no,
+			payment_type as type,
+			payment_acc_no as accNo,
+			payment_months as months,
+			payment_amount as amount,
+			payment_status as status,
+			payment_updated_date as updatedDate,
+			payment_created_date as createdDate
+		from
+			shop_order_payments
+		where
+			order_no = #{value}
+			
+	</select>
+</mapper> 
