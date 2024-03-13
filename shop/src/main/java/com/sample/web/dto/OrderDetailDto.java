@@ -19,4 +19,11 @@ public class OrderDetailDto {
 	private Order order;
 	private List<OrderItem> orderItems;
 	private OrderPayment payment;
+	
+	public String getDescription() {
+		if (orderItems.isEmpty()) {
+			return null;
+		}
+		return orderItems.get(0).getProduct().getName() + " 외";
+	}
 }

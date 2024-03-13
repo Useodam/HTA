@@ -1,5 +1,7 @@
 package com.sample.service;
 
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,11 @@ public class UserService {
 	private final UserMapper userMapper;
 	private final UserRoleMapper userRoleMapper;
 	
+	
+	public List<User> getAllUsers() {
+		return userMapper.getAllUsers();
+	}
+	
 	/*
 	 * 신규 회원가입 서비스를 제공하는 메소드다
 	 * 		- 신규 가입 프로세스
@@ -45,7 +52,7 @@ public class UserService {
 	 * 			6. 신규 회원은 ROLE_USER 권한을 부여하기 위해서 UserRole 객체를 생성해서 사용자번호와 "ROLE_USER"객체를 대입한다
 	 * 			7. 신규 회원의 권한 정보가 저장된 UserRole객체를 mybatis에 전달해서 데이터베이스에 저장시킨다
 	 */
-	public void registerUser(UserRegisterForm form) {
+	public User registerUser(UserRegisterForm form) {
 		User foundUser = userMapper.getUserById(form.getId());
 		if(foundUser != null) {
 			throw new AlreadyUsedIdException("[" + form.getId()+"]는 이미 사용중인 아이디입니다");
@@ -68,6 +75,8 @@ public class UserService {
 		userRole.setRolename("ROLE_USER");
 		
 		userRoleMapper.insertUserRole(userRole);
+		
+		return user;
 	}
 	
 	public User getUser(String id) {

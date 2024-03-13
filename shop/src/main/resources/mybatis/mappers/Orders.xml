@@ -15,17 +15,24 @@
 		(#{no}, #{user.no}, #{totalPrice})
 	</insert>
 	
-	<select id="getOrdersByUserNo" parameterType="int" resultType="com.sample.vo.Order">
+	
+	<resultMap type="com.sample.web.dto.OrderListDto" id="OrderListResultMap">
+		<id column="order_no" property="orderNo" />
+		<result column="order_date" property="orderDate"/>
+		<result column="order_total_price" property="totalPrice"/>
+		<collection property="items" 
+		column="order_no" 
+		ofType="com.sample.vo.OrderItem"
+		select="com.sample.mapper.OrderItemMapper.getOrderItemByOrderNo" />
+	</resultMap>
+	
+	<select id="getOrdersByUserNo" parameterType="int" resultMap="OrderListResultMap">
 		select
-			order_no as no,
-			order_date as orderDate,
-			order_total_price as totalPrice,
-			order_status as status,
-			order_updated_date as updatedDate
+			*
 		from
 			shop_orders
 		where
-			user_no = #{user.no}
+			user_no = #{value}
 		order by
 			order_no desc
 	</select>

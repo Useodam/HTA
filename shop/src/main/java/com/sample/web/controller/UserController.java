@@ -1,15 +1,20 @@
 package com.sample.web.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sample.service.OrderService;
 import com.sample.service.UserService;
+import com.sample.vo.Order;
 import com.sample.vo.User;
+import com.sample.web.dto.OrderListDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +23,29 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 	
+	private final OrderService orderService;
 	private final UserService userService;
+	
+	/*
+	 *	요청 방식
+	 *		GET
+	 *	요청 URL
+	 *		localhost/user/check?id=hong
+	 *	요청 파라미터
+	 *		id=hong
+	 *
+	 * 	처리 내용
+	 * 		아이디를 전달받아서 해당 아이디의 사용자가 존재하면 "exist", 아니면 "none"를 응답으로 보낸다
+	 */
+	@GetMapping("/check")
+	@ResponseBody
+	public String checkId(String id) {
+		User user = userService.getUser(id);
+		if(user == null) {
+			return "none";
+		}
+		return "exists";
+	}
 	
 	
 	/*
@@ -46,6 +73,15 @@ public class UserController {
 		User user = userService.getUser(principal.getName());
 		model.addAttribute("user", user);
 		return "user/info";
+	}
+	
+	@GetMapping("/orders")
+	public String orders(Principal principal, Model model) {
+		String userId = principal.getName();
+		List<OrderListDto> dtos = orderService.getMyOrders(userId);
+		model.addAttribute("dtos", dtos);
+		
+		return "user/orders";
 	}
 	
 	
