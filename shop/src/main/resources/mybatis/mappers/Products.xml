@@ -46,7 +46,9 @@
 		from
 			shop_products P, shop_companies C
 		where
-			P.product_category_no = #{value}
+			P.product_category_no in (select category_no
+										from shop_product_categories
+										where parent_category_no = #{value} )	
 			and P.company_no = C.company_no
 		order by
 			P.product_no desc
@@ -59,6 +61,20 @@
 			shop_products
 		where
 			product_no = #{value}
+	</select>
+	
+	<insert id="insertProduct" parameterType="com.sample.vo.Product">
+		insert into shop_product
+		(product_no, product_name, product_description, product_price, product_stock, company_no, product_category_no)
+		values
+		(products_seq.nextval, #{name}, #{description}, #{price}, #{stock}, #{company.no}, ${category.no})
+	</insert>
+	
+	<select id="getAllProducts" resultMap="ProductResultMap">
+		select
+			*
+		from
+			shop_products
 	</select>
 
 </mapper>

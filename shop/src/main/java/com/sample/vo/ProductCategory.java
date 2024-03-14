@@ -13,4 +13,8 @@ public class ProductCategory {
 
 	private int no;
 	private String name;
+	
+	public ProductCategory(int no) {
+		this.no = no;
+	}
 }

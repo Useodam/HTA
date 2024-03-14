@@ -22,6 +22,8 @@
 			category_name as name
 		from
 			shop_product_categories
+		where
+			parent_category_no is null
 		order by
 			category_no asc
 	</select>
@@ -34,6 +36,18 @@
 			shop_product_categories
 		where
 			category_no = #{value}
+	</select>
+	
+	<select id="getProductCategoriesByParentNo" resultType="com.sample.vo.ProductCategory" parameterType="int">
+		select
+			category_no as no,
+			category_name as name
+		from
+			shop_product_categories
+		where
+			parent_category_no = #{value}
+		order by
+			category_no asc
 	</select>
 
 </mapper>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/tags.jsp" %>
+<%@ include file="../../common/tags.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,7 +12,7 @@
 <title>bootstrap</title>
 </head>
 <body>
-<%@ include file="../common/navbar.jsp" %>
+<%@ include file="../../common/navbar.jsp" %>
 <div class="container">
 	<div class="row mb-3">
 		<div class="col-12">
@@ -22,8 +22,8 @@
 			<div class="card">
 				<div class="card-header">관리자 메뉴</div>
 				<div class="list-group list-group-flush">
-					<a href="/admin/users" class="list-group-item list-group-item-action">사용자 관리</a>
-					<a href="" class="list-group-item list-group-item-action">상품 관리</a>
+					<a href="/admin/user/list" class="list-group-item list-group-item-action">사용자 관리</a>
+					<a href="/admin/product/list" class="list-group-item list-group-item-action">상품 관리</a>
 					<a href="" class="list-group-item list-group-item-action">주문 관리</a>
 					<a href="" class="list-group-item list-group-item-action">결재 관리</a>
 					<a href="" class="list-group-item list-group-item-action">공지사항 관리</a>
@@ -110,7 +110,26 @@
 
 		// 부트스트랩 모달(팝업창) 객체를 생성한다
 		const myModal = new bootstrap.Modal(document.getElementById('modal-user-info'));
-
+		
+		// async - 이 함수는 비동기 통신을 수행하는 함수다
+		// await - 해당 함수가 처리를 완료할 때까지 기다린다
+		
+		async function showUserInfo(id){
+			let response = await fetch("/admin/users/" + id);
+			let user = await response.json();
+			
+			document.getElementById("user-no").textContent = user.no;
+			document.getElementById("user-id").textContent = user.id;
+			document.getElementById("user-name").textContent = user.name;
+			document.getElementById("user-created-date").textContent = user.createdDate;
+			document.getElementById("user-email").textContent = user.email;
+			document.getElementById("user-tel").textContent = user.tel;
+			document.getElementById("user-birth").textContent = user.birth;
+		
+			myModal.show();
+		}
+/*
+ * 
 	function showUserInfo(id){
 		let xhr = new XMLHttpRequest();						// 1. 서버와 HTTP 통신을 하는 XMLHttpRequest 객체를 생성한다
 		xhr.onreadystatechange = function() {				// 2. xhr객체의 readyState 값이 변경될 때 마다 실행되는 이벤트 핸들러 함수를 등록한다
@@ -136,6 +155,7 @@
 		xhr.send(null);										// 4. 서버로 요청을 보낸다
 		
 	}
+ */
 </script>
 </body>
 </html>
