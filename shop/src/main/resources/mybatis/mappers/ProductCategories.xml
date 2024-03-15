@@ -19,7 +19,8 @@
 	<select id="getProductCategories" resultType="com.sample.vo.ProductCategory">
 		select
 			category_no as no,
-			category_name as name
+			category_name as name,
+			parent_category_no as parentNo
 		from
 			shop_product_categories
 		where
@@ -31,7 +32,8 @@
 	<select id="getProductCategoryByNo" resultType="com.sample.vo.ProductCategory" parameterType="int">
 		select
 			category_no as no,
-			category_name as name
+			category_name as name,
+			parent_category_no as parentNo
 		from
 			shop_product_categories
 		where
@@ -41,7 +43,8 @@
 	<select id="getProductCategoriesByParentNo" resultType="com.sample.vo.ProductCategory" parameterType="int">
 		select
 			category_no as no,
-			category_name as name
+			category_name as name,
+			parent_category_no as parentNo
 		from
 			shop_product_categories
 		where

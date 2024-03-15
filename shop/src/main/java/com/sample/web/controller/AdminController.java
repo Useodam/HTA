@@ -100,9 +100,12 @@ public class AdminController {
 		return dto;
 	}
 	
-	@GetMapping("/category")
+	@GetMapping(path = "/category")
 	@ResponseBody      
 	public List<ProductCategory> categories(@RequestParam("catNo") int catNo){
 		return productService.getAllSubProductCategories(catNo);
 	}
+	
+	
+	
 }

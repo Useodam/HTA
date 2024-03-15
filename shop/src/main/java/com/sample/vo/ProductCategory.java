@@ -13,6 +13,7 @@ public class ProductCategory {
 
 	private int no;
 	private String name;
+	private int parentNo;
 	
 	public ProductCategory(int no) {
 		this.no = no;
