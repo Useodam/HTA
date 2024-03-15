@@ -71,4 +71,9 @@ public class ProductService {
 	public List<Product> getAllProducts() {
 		return productMapper.getAllProducts();
 	}
+
+	public void updateProduct(Product product) {
+		productMapper.updateProduct(product);
+		
+	}
 }

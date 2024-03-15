@@ -57,10 +57,10 @@
 					<c:forEach var="product" items="${products}" varStatus="status">
 						<tr>
 							<td>${status.count }</td>
-							<td>${product.category.name }</td>
-							<td>${product.name }</td>
-							<td>${product.company.name }</td>
-							<td><fmt:formatNumber value="${product.price }" /> 원</td>
+							<td><span id="pro-cat-${product.no }">${product.category.name }</span></td>
+							<td><span id="pro-name-${product.no }">${product.name }</span></td>
+							<td><span id="pro-company-${product.no }">${product.company.name }</span></td>
+							<td><span id="pro-price-${product.no }"><fmt:formatNumber value="${product.price }" /></span> 원</td>
 							<td>
 								<button class="btn btn-outline-primary btn-sm" onclick="showProductForm(${product.no})">수정하기</button>
 							</td>
@@ -276,7 +276,29 @@
 			},
 			body: jsonText
 		})
+		
+		if(response.ok){
+			
+			document.getElementById("pro-name-" + data.no).textContent = data.name;
+			document.getElementById("pro-price-" + data.no).textContent = parseInt(data.price).toLocaleString();
+			
+			// select박스 엘리먼트를 선택한다
+			let categoryOptions = document.querySelector("select[name=categoryNo]");
+			// select.options는 셀렉터 박스의 모든 옵션을 배열로 반환한다
+			// select.selectedIndex는 셀럭타박스의 옵션 중에서 현재 선택된 옵션의 index를 반환한다
+			// select.options[select.selectIndex]는 셀렉터박스의 옵션 중에서 현재 선택된 옵션 엘리먼트를 반환한다
+			// select.options[select.selectIndex].textContent는 현재 선택된 옵션 엘리먼트의 텍스트 컨텐츠를 반환한다
+			let categoryName = categorySelector.options[categorySelect.selectedIndex].textContent;
+			document.getElementById("pro-cat" + data.no).textContent = categoryName;
+			
+			let companySelect = document.querySelector("select[name=companyNo]");
+			let companyName = companySelect.options[companySelect.selectedIndex].textContent;
+			document.getElementById("pro-company-" + data.no).textContent = companyName;
+			
+			productFormModal.hide();
+		};
 	}
+	
 
 /*
 		const Modal = new bootstrap.Modal(document.getElementById('modal-product-info'));

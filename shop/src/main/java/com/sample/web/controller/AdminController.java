@@ -110,7 +110,7 @@ public class AdminController {
 	@PostMapping("/product/modify")
 	@ResponseBody
 	public void modifyProduct(@RequestBody Product product) {
-		System.out.println(product);
+		productService.updateProduct(product);
 	}
 	
 	
