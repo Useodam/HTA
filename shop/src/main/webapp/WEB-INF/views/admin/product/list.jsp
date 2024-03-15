@@ -132,6 +132,8 @@
 			</div>
 			<div class="modal-body">
 				<form action="" class="border bg-light p-3">
+					<sec:csrfInput/>
+					<input type="hidden" name="no" />
 					<div class="row mb-3">
 						<div class="col-6">
 							<div class="form-group">
@@ -194,7 +196,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary">수정</button>
+				<button type="button" class="btn btn-primary" onclick="submitForm()">수정</button>
 			</div>
 		</div>
 	</div>
@@ -216,7 +218,8 @@
 		let response = await fetch("/admin/product/" + productNo);
 		let product = await response.json();
 		
-		setCategory(product.category.no, product.category.parentNo);
+		setCategory(product.category.parentNo, product.category.no);
+		document.querySelector("input[name=no]").value = product.no;
 		document.querySelector("input[name=name]").value = product.name;
 		document.querySelector("select[name=companyNo]").value = product.company.no;
 		document.querySelector("input[name=price]").value = product.price;
@@ -225,7 +228,7 @@
 		
 	}
 	
-	async function setCategory(no, parentNo){
+	async function setCategory(parentNo, no){
 		document.querySelector("select[name=parentCategoryNo]").value = parentNo;
 		
 		let response = await fetch("/admin/category?catNo=" + parentNo);
@@ -242,9 +245,38 @@
 	
 	function changeCategory(){
 		let parentNo = document.querySelector("select[name=parentCategoryNo]").value;
-		setCategory(undefined, parentNo);
+		setCategory(parentNo);
 	}
 	
+	
+	// 제출 메소드
+	async function submitForm(){
+		// 자바 스크립트 객체
+		let data = {
+			no : document.querySelector("input[name=no]").value,
+			category: {
+				no: document.querySelector("select[name=categoryNo]").value
+			},
+			name : document.querySelector("input[name=name]").value,
+			company: {
+				no: document.querySelector("select[name=companyNo]").value
+			},
+			price : document.querySelector("input[name=price]").value,
+			stock : document.querySelector("input[name=stock]").value,
+			description : document.querySelector("textarea[name=description]").value
+		};
+		
+		let jsonText = JSON.stringify(data);
+		
+		let response = await fetch("/admin/product/modify", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"X-CSRF-TOKEN": document.querySelector("input[name='_csrf']").value
+			},
+			body: jsonText
+		})
+	}
 
 /*
 		const Modal = new bootstrap.Modal(document.getElementById('modal-product-info'));
