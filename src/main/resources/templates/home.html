@@ -1,0 +1,26 @@
+<!-- 
+	layout:decorate 속성
+		이 페이지가 사용할 레이아웃 파일을 지정한다 
+		레이아웃 파일에는 여러 페이지에서 공통으로 사용하는 내비바, 메뉴, 푸터가 미리 포함되어 있다
+		레이아웃 파일을 상속받은 페이지에서는 레이아웃에 포함될 컨텐츠 영역을 작성한다
+		
+	layout:fragment="조각이름"
+		이 페이지에서 작성한 HTML 코드에 대한 조각이름을 지정한다
+		레이아웃 파일에서 <th:block layout:gragment="조각이름"></th:block>으로 지정한 곳에 포함된다
+		
+	thymeleaf의 레이아웃 기능을 사용하는 이유
+		- 화면의 레이아웃을 미리 구성하고, 해당 레이아웃을 이용해서 다양한 페이지를 작성할 수 있다
+		- 여러 화면에 공통적으로 존재하는 영역을 별도의 파일을 만들고, 기본 레이아웃 파일에서 해당 파일을 포함시켜 놓으면 레이아웃을 이용하는
+		  개별 파일에서는 별도의 설정없이 바로 사용가능하다
+		- 개별 화면을 작성할 때 해당 웹 페이지의 고유한 내용만 작성하면 되기 때문에 빠르게 웹 페이지를 구현할 수 있다
+-->
+<html layout:decorate="~{layout/base}">
+<div layout:fragment="content" class="container my-3">
+	<div class="row mb-3">
+		<div class="col-12">
+			<h1>홈</h1>
+			<p>Spring Boot, Spring MVC, Spring Security, Thymeleaf, JPA를 활용한 게시판 웹 애플리케이션 입니다</p>
+		</div>
+	</div>
+</div>
+</html>
