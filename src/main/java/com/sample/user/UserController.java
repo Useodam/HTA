@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
+	
+	private final UserService userService;
 
 	
 	@GetMapping("/signup")
@@ -30,11 +32,15 @@ public class UserController {
 		if(errors.hasErrors()) {
 			return "register-form";
 		}
-		return "redirect:/user/completed";
+		
+		User user = userService.registerUser(form);
+		
+		return "redirect:/user/completed?id=" + user.getId();
 	}
 	
 	@GetMapping("/completed")
-	public String completed() {
+	public String completed(Long id, Model model) {
+		
 		return "completed";			// src/main/resources/templates/completed.html
 	}
 	

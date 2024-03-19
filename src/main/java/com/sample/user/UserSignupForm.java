@@ -28,7 +28,20 @@ public class UserSignupForm {
 	private String email;
 	
 	@NotBlank(message = "전화번호는 필수입력값입니다")
-	@Pattern(regexp ="^\\d{2,3}-\\d{3,4}=\\d{4}$", message = "유효한 전화번호 형식이 아닙니다")
+	@Pattern(regexp ="^\\d{2,3}-\\d{3,4}-\\d{4}$", message = "유효한 전화번호 형식이 아닙니다")
 	private String tel;
+	
+	
+	public User toEntity() {
+		User user = new User();
+		user.setUsername(id);
+		user.setPassword(password);
+		user.setName(name);
+		user.setEmail(email);
+		user.setTel(tel);
+		
+		return user;
+		
+	}
 	
 }
