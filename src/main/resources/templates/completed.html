@@ -1,0 +1,13 @@
+<html layout:decorate="~{layout/base}">
+<div layout:fragment="content" class="container my-3">
+	<div class="row mb-3">
+		<div class="col-12">
+			<h1>회원가입 완료</h1>
+			<p><strong th:text="${user.name}">홍길동</strong>님 회원가입이 완료되었습니다</p>
+			<p><strong th:text="${user.name}">홍길동</strong>님 회원번호는 <strong th:text=${user.id}>1000</strong> 입니다</p>
+			
+		</div>
+	</div>
+</div>
+
+</html>

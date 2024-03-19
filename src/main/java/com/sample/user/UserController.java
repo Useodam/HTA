@@ -32,14 +32,25 @@ public class UserController {
 		if(errors.hasErrors()) {
 			return "register-form";
 		}
+		try {
+			User user = userService.registerUser(form);
+			return "redirect:/user/completed?id=" + user.getId();
+		} catch (RuntimeException ex) {
+			String message = ex.getMessage();	// "id" 혹은 "email" 중 하나다
+			if("id".equals(message)) {
+					errors.rejectValue("id", null, "사용할 수 없는 아이디입니다");
+			} else if("email".equals(message)){
+				errors.rejectValue("email", null, "사용할 수 없는 이메일입니다");
+			}
+			return "register-form";
+		}
 		
-		User user = userService.registerUser(form);
-		
-		return "redirect:/user/completed?id=" + user.getId();
 	}
 	
 	@GetMapping("/completed")
 	public String completed(Long id, Model model) {
+		User user = userService.getUser(id);
+		model.addAttribute("user", user);
 		
 		return "completed";			// src/main/resources/templates/completed.html
 	}
