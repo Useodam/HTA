@@ -1,5 +1,7 @@
 package com.sample.user;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -32,10 +34,10 @@ public class UserSignupForm {
 	private String tel;
 	
 	
-	public User toEntity() {
+	public User toEntity(PasswordEncoder passwordEncoder) {
 		User user = new User();
 		user.setUsername(id);
-		user.setPassword(password);
+		user.setPassword(passwordEncoder.encode(password));
 		user.setName(name);
 		user.setEmail(email);
 		user.setTel(tel);

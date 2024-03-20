@@ -1,7 +1,11 @@
 package com.sample.user;
 
+import com.sample.common.BaseDateTimeEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -50,7 +54,7 @@ import lombok.Data;
 		allocationSize = 1
 		)
 @Data
-public class User {
+public class User extends BaseDateTimeEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_pk_generator")
@@ -71,4 +75,6 @@ public class User {
 	@Column(nullable = false)
 	private String tel;
 	
+	@Enumerated(EnumType.STRING)
+	private UserRole userRole;
 }

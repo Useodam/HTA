@@ -1,0 +1,38 @@
+<html layout:decorate="~{layout/base}">
+
+<div layout:fragment="content" class="container">
+
+	<div class="row mb-3">
+		<div class="col-12">
+			<h1>게시글 상세 정보</h1>
+			
+			<table class="table">
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>제목</th>
+						<td th:text="${post.title}"></td>
+						<th>작성자</th>
+						<td th:text="${post.user.name}"></td>
+					</tr>
+					<tr>
+						<th>등록일</th>
+						<td th:text="${#temporals.format(post.createdDate, 'yyyy년 MM월 dd일 a h시 m분 s초')}"></td>
+						<th>수정일</th>
+						<td th:text="${#temporals.format(post.updatedDate, 'yyyy년 MM월 dd일 a h시 m분 s초')}"></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td th:text="${post.content}" colspan="3">내용입니다</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</html>
