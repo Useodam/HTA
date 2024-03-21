@@ -11,7 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /*
  * @Entity
@@ -42,9 +43,15 @@ import lombok.Data;
  * 		- AUTO
  * 			+ default 기본키 생성 방식이다
  * 			+ 데이터베이스에 따라 적절한 기본키를 자동으로 생성한다
+ * 
+ * @Enumerated
+ * 		- 이 어노테이션은 상수데이터의 주요한 값(순번) 중에서 어떤 값을 엔티티에서 사용할 것인지 지정하는 어노테이션이다
+ * 		- EnumType.STRING - 상수데이터의 이름을 사용한다 , EnumType.ORDINAL - 상수데이터의 순번을 사용한다
  * 			
  */
 
+@Setter
+@Getter
 @Entity
 @Table(name="board_users")
 @SequenceGenerator(
@@ -53,7 +60,7 @@ import lombok.Data;
 		initialValue = 1,
 		allocationSize = 1
 		)
-@Data
+
 public class User extends BaseDateTimeEntity {
 	
 	@Id

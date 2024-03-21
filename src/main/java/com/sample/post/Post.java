@@ -1,6 +1,5 @@
 package com.sample.post;
 
-import java.time.LocalDateTime;
 
 import com.sample.common.BaseDateTimeEntity;
 import com.sample.user.User;
@@ -14,7 +13,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /*
  * @ManyToOne
@@ -35,7 +35,9 @@ import lombok.Data;
 		initialValue = 1000,
 		allocationSize = 1
 )
-@Data
+
+@Getter
+@Setter
 public class Post extends BaseDateTimeEntity {
 
 	@Id
