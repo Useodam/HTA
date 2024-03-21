@@ -46,11 +46,15 @@
 						
 					th:if="${#authentication.principal.username == post.user.username}"
 						현재 로그인된 사용자의 아이디와 게시글 작성자 아이디가 일치하는 경우 true로 판정하고, 해당 컨텐츠를 출력한다
+						
+					th:text="${post.postVoters}"
 				 -->
 			
 				<a th:href="@{|/post/vote/${post.id}|}" 
-				sec:authorize="isAuthenticated()"
-				class="btn btn-sm btn-success">추천</a>
+					class="btn btn-sm btn-outline-success">
+					추천
+					<span class="badge rounded-fill bg-success" th:text="${#sets.size(post.postVoters)}">1</span>
+				</a>
 				
 				<a th:href="@{|/post/modify/${post.id}|}"
 				sec:authorize="isAuthenticated()"

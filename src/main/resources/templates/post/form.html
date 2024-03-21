@@ -1,0 +1,36 @@
+<html layout:decorate="~{layout/base}">
+<div layout:fragment="content" class="container">
+	<div class="row mb-3">
+		<div class="col-12">
+			<h1>게시글 등록폼</h1>
+			
+			<!-- 
+				<form>태그에서 th:action="URL경로"을 지정하지 않은 경우
+					+ <form>의 th:action 속성값은 주소창의 URL 경로가 된다
+					+ 새 게시글 등록
+						- 등록화면 요청 : GET방식,  /post/create
+						- 등록	 요청 : POST방식
+					+ 게시글 수정
+						- 수정화면 요청 : GET방식, /post/modify/1001
+						- 수정	 요청 : POST방식
+			 -->
+			
+			<form class="border bg-light p-3" method="post" th:object="${postForm}">
+				<div class="form-group mb-3">
+					<label class="form-label">제목</label>
+					<input type="text" th:field="*{title}" class="form-control" />
+					<div th:errors="*{title}" class="text-danger"></div>
+				</div>
+				<div class="form-group mb-3">
+					<label class="form-label">내용</label>
+					<textarea rows="5" th:field="*{content}" class="form-control"></textarea>
+					<div th:errors="*{content}" class="text-danger"></div>
+				</div>
+				<div class="text-end">
+					<button type="submit" class="btn btn-primary">등록하기</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</html>

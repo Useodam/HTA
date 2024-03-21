@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -98,4 +99,16 @@ public class PostController {
 		
 		return String.format("redirect:/post/detail?id=%d", id);
 	}
+	
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/vote/{id}")
+	public String vote(@PathVariable("id") Long id, Principal principal) {
+		postService.vote(id, principal.getName());
+		
+		return String.format("redirect:/post/detail?id=%d", id);
+	}
+	
+	
+	
 }

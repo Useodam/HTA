@@ -19,6 +19,7 @@ public class PostService {
 
 	private final PostRepository postRepository;
 	private final UserRepository userRepository;
+	private final PostVoterRepository postVoterRepository;
 	
 	
 	/**
@@ -74,5 +75,30 @@ public class PostService {
 		post.setContent(postForm.getContent());
 		
 		postRepository.save(post);
+	}
+
+	/**
+	 * 게시글번호와 사용자아이디를 전달받아서 추천정보를 추가한다
+	 * @param id 게시글 번호
+	 * @param username 사용자 아이디
+	 */
+	public void vote(Long id, String username) {
+		Post post = getPostDetail(id);
+		User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("사용자정보가 존재하지 않습니다"));
+		
+		// 게시글정보와 사용자정보로 추천정보를 조회한다
+		Optional<PostVoter> optional = postVoterRepository.findByPostAndUser(post, user);
+		if(optional.isEmpty()) {	// 추천정보가 존재하지 않으면 추천정보를 저장한다
+			PostVoter voter = new PostVoter();
+			voter.setPost(post);
+			voter.setUser(user);
+			
+			postVoterRepository.save(voter);
+		} else {					// 추천정보가 존재하면 
+			PostVoter voter = optional.get();
+			postVoterRepository.delete(voter);
+			
+		}
+		
 	}
 }
