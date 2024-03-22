@@ -69,5 +69,44 @@
 			
 		</div>
 	</div>
+	
+	<!-- 댓글 목록 및 작성폼 -->
+	<div class="row mb-3">
+		<div class="col-12">
+			<!-- 댓글 목록 -->
+			<div th:each="reply : ${post.replies}" class="card my-3">
+				<div class="card-body py-1 px-2">
+					<a th:id="|reply_${reply.id}|"></a>
+						<div class="d-flex justify-content-between">
+							<div>
+								<span class="badge bg-light text-dark" th:text="${reply.user.name}">홍길동</span>
+								<span class="badge bg-light text-dark" th:text="${#temporals.format(reply.createdDate, 'yyyy년 MM월 dd일')}">2024-03-21</span>
+							</div>
+						<div>
+							<a class="btn btn-sm btn-outline-success">추천</a>
+							<a class="btn btn-sm btn-outline-secondary">수정</a>
+							<a class="btn btn-sm btn-outline-secondary">삭제</a>
+						</div>
+					</div>
+						<p class="card-text ps-2" style="white-space: pre-line;" th:text="${reply.content}">댓글 내용입니다 </p>
+				</div>
+			</div>
+			
+			<!-- 댓글 작성폼 -->
+			<form class="border p-3 mb-3" sec:authorize="isAuthenticated()" method="post" th:action="@{|/reply/created/${post.id}|}">
+				<div class="row g-3">
+					<div class="col-12 position-relative">
+						<textarea rows="3" cols="" class="form-control" name="content"></textarea>
+						<button type="submit" class="btn btn-outline-dark btn-sm position-absolute" 
+							style="bottom: 15px; right: 25px;">
+							댓글등록
+						</button>
+					</div>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+	
 </div>
 </html>

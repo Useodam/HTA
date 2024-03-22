@@ -1,14 +1,17 @@
 package com.sample.post;
 
 
+import java.util.List;
 import java.util.Set;
 
 import com.sample.common.BaseDateTimeEntity;
+import com.sample.reply.Reply;
 import com.sample.user.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -58,7 +61,10 @@ public class Post extends BaseDateTimeEntity {
 	@Column(nullable = false)
 	private String content;
 	
-	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	private List<Reply> replies;
+	
+	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 	private Set<PostVoter> postVoters;
 	
 	

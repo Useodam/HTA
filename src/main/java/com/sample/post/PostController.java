@@ -109,6 +109,18 @@ public class PostController {
 		return String.format("redirect:/post/detail?id=%d", id);
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id")Long id, Principal principal) {
+		Post post = postService.getPostDetail(id);
+		if(!post.getUser().getUsername().equals(principal.getName())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "다른 작성자의 게시글은 삭제할 수 없습니다");
+		}
+		
+		postService.deletePost(post);
+		
+		return "redirect:/post/list";
+	}
 	
 	
 }
