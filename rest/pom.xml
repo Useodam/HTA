@@ -17,6 +17,17 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+	
+	<!-- 
+		swagger 온라인 문서를 지원하는 라이브러리 의존성
+	-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+	
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
