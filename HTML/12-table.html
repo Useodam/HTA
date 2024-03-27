@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        thead{
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>테이블의 셀 병합</h1>
+    <!--
+        th와 td의 셀병합 관련 속성
+            + rowspan
+                해당 셀이 점유할 행의 수를 지정한다
+                세로방향 병합
+            + colspan
+                해당 셀이 점유할 열의 수를 지정한다
+                가로방향 병합
+    -->
+    
+    <h3>가로방향 병합하기</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>구분</td>
+                    <td colspan="3">과목</td>
+
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td>국어</td>
+                    <td>영어</td>
+                    <td>수학</td>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>김유신</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>강감찬</td>
+                    <td>80</td>
+                    <td>100</td>
+                    <td>90</td>
+                </tr>
+                <tr>
+                    <td>이순신</td>
+                    <td>80</td>
+                    <td>70</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>셀방향 병합하기</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>항목명</th>
+                    <th>값</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td rowspan="2">전화번호</td>
+                    <td>010-1111-1111</td>
+                </tr>
+
+                <tr>
+                    <td>010-1234-5678</td>
+                </tr>
+
+                <tr>
+                    <td rowspan="3">배송지</td>
+                    <td>서울특별시 서대문구 북가좌2동</td>
+                </tr>
+
+                <tr>
+                    <td>서울특별시 종로구 봉익동 디아망빌딩</td>
+                </tr>
+                
+                <tr>
+                    <td>서울특별시 영등포구 중앙동</td>
+                </tr>
+            </tbody>
+        </table>
+</body>
+</html>

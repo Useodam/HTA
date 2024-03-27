@@ -1,0 +1,163 @@
+<html layout:decorate="~{layout/base}">
+
+<div layout:fragment="content" class="container">
+
+	<div class="row mb-3">
+		<div class="col-12">
+			<h1>게시글 상세 정보</h1>
+			
+			<table class="table">
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>제목</th>
+						<td th:text="${post.title}"></td>
+						<th>작성자</th>
+						<td th:text="${post.user.name}"></td>
+					</tr>
+					<tr>
+						<th>등록일</th>
+						<td th:text="${#temporals.format(post.createdDate, 'yyyy년 MM월 dd일 a h시 m분 s초')}"></td>
+						<th>수정일</th>
+						<td th:text="${#temporals.format(post.updatedDate, 'yyyy년 MM월 dd일 a h시 m분 s초')}"></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td th:text="${post.content}" colspan="3">내용입니다</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div>
+				<!-- 
+					sec:authorize="isAuthenticated()"
+						인증된 사용자인 경우 true로 판정하고, 해당 컨텐츠를 출력한다
+						
+					${#authentication.principal.username}
+						현재 로그인된 사용자의 아이디를 조회한다
+						
+					${post.user.username}
+						게시글의 작성자 아이디를 조회한다
+						
+					th:if="${#authentication.principal.username == post.user.username}"
+						현재 로그인된 사용자의 아이디와 게시글 작성자 아이디가 일치하는 경우 true로 판정하고, 해당 컨텐츠를 출력한다
+						
+					th:text="${post.postVoters}"
+				 -->
+			
+				<a th:href="@{|/post/vote/${post.id}|}" 
+					class="btn btn-sm btn-outline-success">
+					추천
+					<span class="badge rounded-fill bg-success" th:text="${#sets.size(post.postVoters)}">1</span>
+				</a>
+				
+				<a th:href="@{|/post/modify/${post.id}|}"
+				sec:authorize="isAuthenticated()"
+				th:if="${#authentication.principal.username == post.user.username}"
+				class="btn btn-sm btn-warning">수정</a>
+				
+				<a th:href="@{|/post/delete/${post.id}|}"
+				sec:authorize="isAuthenticated()"
+				th:if="${#authentication.principal.username == post.user.username}"
+				class="btn btn-sm btn-danger">삭제</a>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- 댓글 목록 및 작성폼 -->
+	<div class="row mb-3">
+		<div class="col-12">
+			<!-- 댓글 목록 -->
+			<div th:each="reply : ${post.replies}" class="card my-3">
+				<div class="card-body py-1 px-2">
+					<a th:id="|reply_${reply.id}|"></a>
+						<div class="d-flex justify-content-between">
+							<div>
+								<span class="badge bg-light text-dark" th:text="${reply.user.name}">홍길동</span>
+								<span class="badge bg-light text-dark" th:text="${#temporals.format(reply.createdDate, 'yyyy년 MM월 dd일')}">2024-03-21</span>
+							</div>
+						<div>
+							<a 	th:href="@{|/reply/vote/${reply.id}|}"
+								class="btn btn-sm btn-outline-success">
+								추천
+								<span class="badge rounded-fill bg-success" th:text="${#sets.size(reply.replyVoters)}"></span>
+							</a>
+							
+							<button th:onclick="toggleform([[${reply.id}]])"
+								class="btn btn-sm btn-outline-secondary"
+								sec:authorize="isAuthenticated()"
+								th:if="${#authentication.principal.username == reply.user.username}">
+								수정
+							</button>
+							
+							<a th:href="@{|/reply/delete/${reply.id}|}"
+								class="btn btn-sm btn-outline-secondary"
+								sec:authorize="isAuthenticated()"
+								th:if="${#authentication.principal.username == reply.user.username}">
+								삭제
+							</a>
+						</div>
+					</div>
+						<p class="card-text ps-2 small" style="white-space: pre-line;" th:text="${reply.content}">댓글 내용입니다 </p>
+						<form th:attr="id='form-reply-' + ${reply.id}" 
+							class="border p-3 mb-3 d-none" 
+							sec:authorize="isAuthenticated()" 
+							method="post" 
+							th:action="@{|/reply/modify/${reply.id}|}">
+							<div class="row g-3">
+								<div class="col-12 position-relative">
+									<textarea rows="3" cols="" class="form-control" name="content" th:text="${reply.content}"></textarea>
+									<button type="submit" class="btn btn-outline-dark btn-sm position-absolute" 
+										style="bottom: 15px; right: 25px;">
+										댓글수정
+									</button>
+								</div>
+							</div>
+						</form>
+				</div>
+			</div>
+			
+			<!-- 댓글 작성폼 -->
+			<form class="border p-3 mb-3" sec:authorize="isAuthenticated()" method="post" th:action="@{|/reply/created/${post.id}|}">
+				<div class="row g-3">
+					<div class="col-12 position-relative">
+						<textarea rows="3" cols="" class="form-control" name="content"></textarea>
+						<button type="submit" class="btn btn-outline-dark btn-sm position-absolute" 
+							style="bottom: 15px; right: 25px;">
+							댓글등록
+						</button>
+					</div>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+	
+</div>
+
+<script layout:fragment="script" type="text/javascript">
+	function toggleform(replyId){
+		/*
+			Element 객체의 classList 프로퍼티
+				classList 프로퍼티는 DOTMkoenList 객체를 반환한다
+				DOTMkoenList 객체는 구분자로 구분된 토큰을 관리하는 객체다
+				
+				add(값)
+				contains(값)
+				remove(값)
+				
+				<div class="border bg-light p-3">
+					이 태그를 표현하는 엘리먼트객체의 classList에는 "border bg-light p-3"이 저장되어 있다
+					border, bg-light, p-3이 토큰이다. 토큰을 분리하는 구분자는 공백이다
+		*/
+		let form = document.getElementById("form-reply-" + replyId);
+		form.classList.toggle('d-none');
+	}
+</script>
+</html>

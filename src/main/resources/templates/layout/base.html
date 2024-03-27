@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+<!-- 부트스트랩 스타일시트 파일 포함시키기 -->
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" >
+<title>스프링 부트 게시판</title>
+</head>
+<body>
+<!-- 
+	th:replace 속성
+		+ fragment로 조각화한 공통 영역을 HTML에 삽입시키는 역할을 수행한다
+		+ JSP의 <%@ include file="파일명" %>과 유사한 역할을 수행한다
+		+ th:replace=~{파일경로 :: 조각이름}" 의 형식으로 작성한다
+ -->
+<!-- 내비게이션 바 -->
+<nav th:replace="~{layout/navbar :: navbar-fragment}"></nav>
+
+<!-- 이 레이아웃 파일을 상속받은 개별 웹 페이지에서 정의한 context fragment가 포함될 곳을 지정한다 -->
+<th:block layout:fragment="content"></th:block>
+
+<!-- 푸터 -->
+<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
+
+<!-- 부트스트랩 자바스크립트 파일을 포함시키기 -->
+ <script type="text/javascript" th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
+ 
+<!-- 이 레이아웃 파일을 상속받은 개별 웹 페이지에서 정의한 사용자정의 스크립트 코드가 포함될 곳을 지정한다 -->
+ <th:block layout:fragment="script"></th:block>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        thead{
+            background-color: green;
+            }
+
+            tbody tr:nth-child(2n){
+                background-color: lightgray;
+            }
+
+
+    </style>
+</head>
+<body>
+    <h1>테이블 태그 연습</h1>
+    <!--
+        table 태그
+            + 표를 만들 때 사용하는 태그다.
+            + 주요 태그
+            <table>
+                표를 정의하는태그다
+            <thead>
+                표의 헤더부를 저의하는 태그다
+            <tbody>
+                표의 바디부를 정의하는 태그다
+            <tr>
+                표 내부의 행(table row)를 정의하는 태그다
+            <th>
+                행 내부의 제목 셀(table heading)을 정의하는 태그
+            <td>
+                행 내부의 일반 셀(table data)을 정의하는 태그
+            
+            + thead와 tbody는 표의 헤더부와 표의 바디부를 구분해서
+              각각 다른 스타일을 적용하거나
+              혹은 스트립트에서 바디부만 조작하기 위해서 사용
+    -->
+
+    <h3>부서정보</h3>
+    <table border="1">
+        <tr>
+            <td>부서아이디</td>
+            <td>부서이름</td>
+            <td>부서관리자</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>총무부</td>
+            <td>김유신</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>기술부</td>
+            <td>강감찬</td>
+        </tr>
+        <tr>
+            <td>30</td>
+            <td>영업부</td>
+            <td>이순신</td>
+        </tr>
+    </table>
+
+    <h3>학생정보</h3>
+    <table border="1">
+    <thead>
+        <tr>
+            <th>학번</th>
+            <th>학과</th>
+            <th>학년</th>
+            <th>이름</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>100</td>
+            <td>컴퓨터공학과</td>
+            <td>3</td>
+            <td>이순신</td>
+        </tr>
+        <tr>
+            <td>101</td>
+            <td>컴퓨터공학과</td>
+            <td>3</td>
+            <td>강감찬</td>
+        </tr>
+        <tr>
+            <td>103</td>
+            <td>기계공학과</td>
+            <td>1</td>
+            <td>류관순</td>
+        </tr>
+    </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.mapper.OrderMapper">
+	
+	<insert id="insertOrder" parameterType="com.sample.vo.Order">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select
+				orders_seq.nextval
+			from
+				dual
+		</selectKey>
+		insert into shop_orders
+		(order_no, user_no, order_total_price)
+		values
+		(#{no}, #{user.no}, #{totalPrice})
+	</insert>
+	
+	
+	<resultMap type="com.sample.web.dto.OrderListDto" id="OrderListResultMap">
+		<id column="order_no" property="orderNo" />
+		<result column="order_date" property="orderDate"/>
+		<result column="order_total_price" property="totalPrice"/>
+		<collection property="items" 
+		column="order_no" 
+		ofType="com.sample.vo.OrderItem"
+		select="com.sample.mapper.OrderItemMapper.getOrderItemByOrderNo" />
+	</resultMap>
+	
+	<select id="getOrdersByUserNo" parameterType="int" resultMap="OrderListResultMap">
+		select
+			*
+		from
+			shop_orders
+		where
+			user_no = #{value}
+		order by
+			order_no desc
+	</select>
+	
+	
+	<select id="getOrderByNo" resultType="com.sample.vo.Order" parameterType="int">
+		select
+			order_no as no,
+			order_date as orderDate,
+			order_total_price as totalPrice,
+			order_status as status,
+			order_updated_date as updatedDate,
+			user_no as "user.no"
+		from
+			shop_orders
+		where
+			order_no = #{value}
+	</select>
+	
+</mapper>

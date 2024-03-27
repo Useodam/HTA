@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid red;
+            margin-bottom: 10px;
+        }
+
+        #box-1{
+            background-color: yellow;
+        }
+
+        .image-item{
+            width: 150px;
+            height: 100px;
+            opacity: 0.5;
+        }
+        .image-highlight{
+            opacity: 1.0;
+        }
+    </style>
+</head>
+<body>
+    <h1>아이디와 클래스</h1>
+    <!--
+        id와 class 속성
+            + 모든 엘리먼트의 공통 속성이다
+
+        id 속성
+            + 특정 엘리먼트(태그, 요소)를 식별하기 위한 용도로 사용되는 속성이다.
+            + 웹 페이지 전체에서 똑같은 id 속성값을 가진 태그는 없어야 한다
+                * id 속성값은 고유해야 한다
+            + id 속성값은 숫자로 시작할 수 없다 
+            + 작성예시
+                <div id="wrapper"> ... </div>
+                <input type ="text" name="userName" id="user-name" />
+
+
+        class 속성
+            + 같은 class 속성값을 가진 엘리먼트들은 같은 스타일이 적용되게 하기 위한 용도로 사용된다
+            + 웹 페이지 전체에서 똑같은 class 속성값을 가진 태그는 여러개 있을 수 있다
+            + class 속성은 속성값을 여러 개 가지는 것이 가능하다
+            + 작성예시
+                <div id="image-gallary">
+                    <img src="sample1.jpg" class="gallary_item" />
+                    <img src="sample1.jpg" class="gallary_item active" />
+                    <img src="sample1.jpg" class="gallary_item" />
+                    <img src="sample1.jpg" class="gallary_item" />
+                    <img src="sample1.jpg" class="gallary_item" />
+                </div>
+
+                <button class="btn btn-primary disabled">버튼</button>
+                <button class="btn btn-danger active">버튼</button>
+    -->
+
+    <h2>id 실습하기</h2>
+    <div id="box-1">
+        <h3>첫번째 박스</h3>
+    </div>
+
+    <div>
+
+        <h3>두번째 박스</h3>
+    </div>
+
+    <h2>class 실습하기</h2>
+    <div>
+        <img src="images/GettyImages-1774896643.jpg" class="image-item" alt="" />
+        <img src="images/GettyImages-1774896643.jpg" class="image-item" alt="" />
+        <img src="images/GettyImages-1774896643.jpg" class="image-item" alt="" />
+        <img src="images/GettyImages-1774896643.jpg" class="image-item" alt="" />
+        <img src="images/GettyImages-1774896643.jpg" class="image-item image-highlight" alt="" />
+    </div>
+
+</body>
+</html>

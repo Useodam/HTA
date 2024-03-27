@@ -1,0 +1,44 @@
+<nav th:fragment="navbar-fragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">스프링부트 게시판</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-support-content"
+			aria-controls="navbar-support-content" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbar-support-content">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/}">홈</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/post/list}">게시글</a>
+				</li>
+			</ul>
+			
+			<span class="navbar-text" sec:authorize="isAuthenticated()">
+				<strong sec:authentication="principal.username">홍길동</strong>님 환영합니다
+			</span>
+			
+			<ul class="navbar-nav mb-2 mb-lg-0">
+				<!-- 
+					sec:authorize="접근권한"
+						지정한 접근권한이 true로 판정될 때 해당 태그의 컨텐츠가 출력된다
+						
+						sec:authorize="isAnonymous()"		- 비 로그인 사용자인 경우 true로 판정된다
+						sec:authorize="isAuthenticated()"	- 인증된 사용자인 경우 true로 판정된다
+						sec:authorize="hasRole('USER')"		- USER 권한을 보유한 사용자인 경우 true로 판정된다
+						sec:authorize="hasRole('ADMIN')"	- ADMIN 권한을 보유한 사용자인 경우 true로 판정된다
+				 -->
+				<li class="nav-item" sec:authorize="isAnonymous()">
+					<a class="nav-link" th:href="@{/user/login}">로그인</a>
+				</li>
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+					<a class="nav-link" th:href="@{/user/logout}">로그아웃</a>
+				</li>
+				<liclass="nav-item" sec:authorize="isAnonymous()">
+					<a class="nav-link" th:href="@{/user/signup}">회원가입</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

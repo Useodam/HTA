@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+            a태그 중에서 방문하지 않은 링크와 방문한 링크를 선택한다
+        */
+        a:link, a:visited {color: black; text-decoration: none;}
+
+        /*
+            a태그 중에서 마우스 올라와 있는 링크와 클릭한 링크를 선택한다
+        */
+        a:hover, a:active {color: blue; text-decoration: underline;}
+
+        .image-box img{
+            width: 175px;
+            height: 100px;
+            opacity: 0.3;
+        }
+        /* 클래스속성값이 image-box인 요소의 하위 요소중에서 모든 img 요소를 선택하고
+            그 중에서 마우스가 올라가있는 요소를 선택한다 */
+        .image-box img:hover{
+            opacity: 1.0;
+        }
+        
+        /* div의 하위요소 중에서 모든 input요소를 선택하고, 
+            그 중에서 type속성값이 text인 것을 선택하고,
+            그 중에서 포커스가 들어와있는 요소를 선택한다 */
+        div input[type="text"]:focus{background-color: lightblue;}
+    </style>
+</head>
+<body>
+    <h1>가상 링크 선택자, 가상 동적 선택자</h1>
+
+    <h3>가상 링크 선택자</h3>
+    <ul>
+        <li><a href="http://www.daum.net">다음</a></li>
+        <li><a href="http://google.com">구글</a></li>
+        <li><a href="http://www.naver.com">네이버</a></li>
+        <li><a href="http://www.yahoo.com">야후</a></li>
+    </ul>
+
+    <div class="image-box">
+        <img src="images/GettyImages-1774896643.jpg" alt="">
+        <img src="images/GettyImages-1774896643.jpg" alt="">
+        <img src="images/GettyImages-1774896643.jpg" alt="">
+        <img src="images/GettyImages-1774896643.jpg" alt="">
+        <img src="images/GettyImages-1774896643.jpg" alt="">
+    </div>
+
+    <h3>:focus 활용</h3>
+    <div>
+        <input type="text" name="username" id="">
+        <input type="text" name="usereamil" id="">
+        <input type="text" name="useraddress" id="">
+        <input type="text" name="usertel" id="">
+    </div>
+
+</body>
+</html>

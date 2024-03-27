@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2, h3, h4, h5, h6, p, strong{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>블록 엘리먼트(태그)와 인라인 엘리먼트(태그)</h1>
+    <!--
+        block element(tag)
+            + 항상 새로운 줄에서 시작한다
+            + 항상 사용가능한 최대 너비를 차지한다
+            + 블록 엘리먼트의 왼쪽이나 오른쪽에는 다른 엘리먼트가 위치할 수 없다
+            + 블록 엘리먼트의 너비를 지정할 수 있다
+            + 블록 엘리먼트의 컨텐츠에 대해서 정렬할 수 있다
+            + 대표적인 블록 엘리먼트
+                <header>, <nav>, <section>, <article>, <aside>, <footer>
+                <h1> ~ <h6>, <p>, <ul>, <ol>, <dl>, <li>, <dt>, <dd>
+                <table>, <form>
+                <div>
+            + div 엘리먼트
+                    + 컨테이너 엘리먼트다
+                      * 컨테이너 엘리먼트는 다른 엘리먼트를 담는 용도로 사용되는 엘리먼트다
+                      * 컨테이너 엘리먼트는 여러 엘리먼트를 묶어서 하나의 그룹으로 다룰 수 있게 한다
+                    + 모든 블록 엘리먼트와 모든 인라인 엘리먼트를 포함할 수 있고,
+                      다른 div 엘리먼트도 포함할 수 있다
+                    + html 문서에서는 div 엘리먼트를 사용해서 여러 엘리먼트를 그룹으로 묶고,
+                      그룹단위로 스타일 적용, 엘리먼트 조작 등을 수행한다   
+
+        inline element(tag)
+            + 새로운 줄에서 시작하지 않을 수 있다
+            + 컨텐츠를 표시하는데 필요한 만큼의 너비만 가진다
+            + 엘리먼트의 너비를 지정해도 적용되지 않는다
+            + 엘리먼트 내의 컨텐츠에 대해서 정렬할 수 없다
+            + 대표적인 인라인 엘리먼트
+                <a>, <img>, <strong>, <em>, <samll>, <del>, <ins>, <sub>, <sup>
+                <input>, <select>, <textarea>, <button>, <label>, <span>
+            
+            + span 엘리먼트
+                + 텍스트의 일부를 담는 엘리먼트다
+                + 전체 텍스트 혹은 텍스트의 일부분을 span태그에 담고,
+                  해당 텍스트에만 다른 부분과 구분되는 스타일을 적용하거나,
+                  그 부분의 텍스트만 조작할 수 있게 한다
+    -->
+
+    <h1>h1</h1>
+    <h2>h2</h2>
+    <h3>h3</h3>
+    <h4>h4</h4>
+    <h5>h5</h5>
+    <h6>h6</h6>
+
+    <p style="width: 100%; text-align: center;">p</p>
+    <p style="width: 75%; text-align: center;">p</p>
+    <p style="width: 50%">p</p>
+
+    <strong style="width: 100%;">strong</strong>
+    <strong style="width: 75%;">strong</strong>
+    <strong style="width: 50%;">strong</strong>
+
+
+    <h2>div 실습</h2>
+    <div style="width: 100%;" >
+        <div style="border: 1px solid #ddd; padding: 10px; width: 250px; margin: 0 auto;">
+            <img src="images/GettyImages-1774896643.jpg" width="250" height="150" alt="">
+            <h5>해리 케인</h5>
+            <p>분데스리가 득점1위</p>
+            <p><small>전 소속팀 토트넘 홋스퍼 / 현 소속팀 바이에른 뮌헨</small></p>
+            <p><strong>스트라이커</strong></p>
+        </div>
+    </div>
+
+    <h2>span 실습</h2>
+    <p>경기안내 내일 <span style="padding: 3px; background-color: cornflowerblue; color: white; font-weight: bold;">새벽 5시</span> <span style="font-weight: bold;">리버풀 대 웨스트햄 EFL컵</span> 경기가 있습니다</p>
+
+
+    <h2>블록 엘리먼트와 인라인 엘리먼트간의 전환</h2>
+
+    <h3>블록 엘리먼트를 인라인 엘리먼트로 지정하기</h3>
+    <div>
+        <p style="display: inline;">p</p>
+    </div>
+
+    <h3>인라인 엘리먼트를 블록 엘리먼트로 지정하기</h3>
+    <div>
+        <strong style="display: block;">strong</strong>
+    </div>
+</body>
+</html>
